@@ -1,0 +1,11 @@
+.view-transaction-grid {
+    width: 100%; 
+    height: auto;
+    border: 1px solid #e2e2e2;
+}
+
+.view-transaction-grid .ag-header-viewport .ag-header-row .ag-header-cell {
+    background-color: #3f51b5;
+    color: #fff;
+    text-align: center;
+}

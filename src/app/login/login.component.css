@@ -1,0 +1,9 @@
+.login-form-group {
+    display: block;
+    text-align: center;
+}
+.error-panel {
+    display: inline-block;
+    position: relative;
+    margin: 5px;
+}

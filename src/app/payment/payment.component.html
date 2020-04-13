@@ -1,0 +1,93 @@
+<div class="container app-content-container">
+    <div class="row page-title text-center">
+      <h3 class="page-title">Payment</h3>   
+    </div>   
+    <br>
+    <form class="">
+        <div class="form-group row"  appearance="fill">
+          <div class="col-sm-6 text-center">
+              <mat-form-field>
+                <mat-label>Acc Id</mat-label>
+                <input matInput type="number" />
+              </mat-form-field>
+          </div>
+          <div class="col-sm-6 text-center">
+              <mat-form-field>
+                <mat-label>Transaction Code</mat-label>
+                <input matInput type="number" />
+              </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group row"  appearance="fill">
+          <div class="col-sm-6 text-center">
+              <mat-form-field>
+                  <mat-label>Trade date</mat-label>
+                  <input matInput [matDatepicker]="trade_date">
+                  <mat-datepicker-toggle matSuffix [for]="trade_date"></mat-datepicker-toggle>
+                  <mat-datepicker #trade_date></mat-datepicker>
+              </mat-form-field>
+          </div>
+          <div class="col-sm-6  text-center">
+              <mat-form-field>
+                  <mat-label>Settlement date</mat-label>
+                  <input matInput [matDatepicker]="payment_date">
+                  <mat-datepicker-toggle matSuffix [for]="payment_date"></mat-datepicker-toggle>
+                  <mat-datepicker #payment_date></mat-datepicker>
+              </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group row"  appearance="fill">
+            <div class="col-sm-6  text-center">
+                <mat-form-field>
+                  <mat-label>Exchange Rate</mat-label>
+                  <input matInput type="number" />
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6  text-center">
+                <mat-form-field>
+                  <mat-label>Amount PC</mat-label>
+                  <input matInput type="number" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-group row"  appearance="fill">
+            <div class="col-sm-6  text-center">
+                <mat-form-field>
+                  <mat-label>Original Scenario</mat-label>
+                  <input matInput type="text" />
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6 text-center">
+                <mat-form-field>
+                  <mat-label>FK Sub-Portfolio From</mat-label>
+                  <input matInput type="text" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-group row" appearance="fill">
+            <div class="col-sm-6  text-center">
+                <mat-form-field>
+                  <mat-label>FK Sub-Portfolio To</mat-label>
+                  <input matInput type="text" />
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6  text-center">
+                <mat-form-field>
+                  <mat-label>Cross Qc</mat-label>
+                  <input matInput type="text" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-group row"  appearance="fill">
+            <div class="col-sm-6  text-center">
+                <mat-form-field>
+                  <mat-label>Free Comment</mat-label>
+                  <textarea matInput placeholder="Leave a comment"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button class="btn" mat-button mat-raised-button color="primary" matTooltip="Create" type="submit">Create</button>
+        </div>
+    </form>
+</div>

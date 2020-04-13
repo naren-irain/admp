@@ -1,0 +1,65 @@
+element.style {
+  margin-top: 20px;
+}
+  
+  .sidenav-container {
+    background-color: transparent !important;
+  }
+  .sidenav-container.mat-drawer-opened {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+       flex: 1;
+       top: 62px;
+       width: 250px;
+       height: calc(100% - 62px);
+       position: absolute;
+       box-shadow: 0px 5px 10px 5px #a4addc;
+  }
+
+  .sidenav-container a.mat-list-item{
+    color: #757575 !important;
+    font-weight: 500;
+  }
+  .sidenav-container a.mat-list-item:hover{
+    color: #1976d2 !important;
+    font-weight: 500;
+  }
+  .mat-drawer-backdrop.mat-drawer-shown  {
+    background-color: transparent !important;
+  }
+
+  .sidenav-container .mat-drawer
+  {
+    width: 250px;
+    height: 100%;
+    position: absolute;
+  }
+  .sidenav-container .mat-drawer .mat-drawer-inner-container
+  {
+    top: 0px;
+    height: 100%;
+    padding: 5px;
+    position: absolute;
+  }
+
+  .title-panel {
+    width: calc(100% - 150px);
+    background: #1976d2 !important;
+  }
+
+  .user-panel {
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .user-panel .user-icon {
+    position: relative;
+    top: 5px;
+    margin: 5px;
+  }

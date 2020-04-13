@@ -1,0 +1,41 @@
+<app-header [isUserLoggedIn]="isUserLoggedIn"></app-header>
+<br>
+<div class="container app-content-container">   
+  <div class="row page-title text-center">
+    <h3 class="page-title">View Transaction</h3>   
+  </div>
+  <br>
+  <!-- <form class="" [formGroup]="viewTransactionForm" (ngSubmit)="getAllData()">
+    <div class="form-group row" appearance="fill">
+      <div class="col-sm-12 text-center">
+        <mat-form-field appearance="fill">
+          <mat-label>TRANSACTION TYPE</mat-label>
+          <mat-select placeholder="Select an option" id="transactionType" formControlName="transactionType"  (selectionChange)="getTransactionType($event)">
+            <mat-option value="">Select</mat-option>
+            <mat-option *ngFor="let transaction of transactions" [value]="transaction.transactionTypeName">
+                {{transaction.transactionTypeName}}
+            </mat-option>
+          </mat-select>
+          <mat-hint align="start">
+            <sup>&#42;&nbsp;</sup>Please Select <strong>Transaction Type</strong>
+          </mat-hint>
+          <mat-error *ngIf="viewTransactionForm.get('transactionType').hasError('required')">
+            Transaction Type is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-button mat-raised-button color="primary" style="margin-left: 15px;" [disabled]="viewTransactionForm.invalid" matTooltip="Submit" type="submit">Submit</button>
+      </div>
+    </div>
+  </form> -->
+  <div class="container">
+    <ng-container>
+        <ag-grid-angular #agGrid class="ag-theme-material view-transaction-grid"
+        [gridOptions]="gridOptions"
+        [columnDefs]="columnDefs"
+        [rowData]="transactionList"
+        >
+      </ag-grid-angular>
+    </ng-container>
+  </div>
+</div>
+
