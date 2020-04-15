@@ -537,3 +537,14 @@ textarea.mat-input-element {
 .page {
   padding-bottom: 40px;
 }
+.container.app-mid-container {
+  max-width: 1080px;
+}
+.container.app-mid-container .inner-page-header {
+  padding: 0;
+}
+/*.ag-overlay-wrapper.ag-layout-auto-height.ag-overlay-no-rows-wrapper {
+  background: #b1e6d2;
+  padding-top: 0;
+  color: #166346;
+}*/

@@ -1,10 +1,13 @@
-<app-header [isUserLoggedIn]="isUserLoggedIn"></app-header>
-
-<div class="container app-content-container">   
-  <div class="row page-title text-center">
-    <h3 class="page-title">View Transactions</h3>   
-  </div>
-  <br>
+<div class="page page-list-transactions">
+  <app-header [isUserLoggedIn]="isUserLoggedIn"></app-header>
+  <div class="container app-content-container">  
+    
+    <div class="inner-page-header">
+      <figure><img routerLink="/" src="assets\images\banner-view-transaction.jpg" alt="" /></figure>
+      <div class="hgroup">
+        <h3 class="page-title">View Transaction</h3>   
+      </div>
+    </div>
   <!-- <form class="" [formGroup]="viewTransactionForm" (ngSubmit)="getAllData()">
     <div class="form-group row" appearance="fill">
       <div class="col-sm-12 text-center">
@@ -37,5 +40,8 @@
       </ag-grid-angular>
     </ng-container>
   </div>
+
 </div>
+
+</div> <!-- .page -->
 
