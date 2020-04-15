@@ -1,53 +1,57 @@
-<header class="main-header">
-  <div class="header-wrapper d-flex justify-content-between align-items-center">
-    <div class="col-title"><h1 class="admp-title">ACCOUNTS DATA MANAGEMENT PORTAL</h1></div>
-    <div class="col-logo"><img routerLink="/" src="assets\images\adia-logo.jpg" alt="ADMP" /></div>
-  </div>
-</header>
+<div class="page page-login">
+
+  <header class="main-header">
+    <div class="header-wrapper d-flex justify-content-between align-items-center">
+      <div class="col-title"><h1 class="admp-title">ACCOUNTS DATA MANAGEMENT PORTAL</h1></div>
+      <div class="col-logo"><img routerLink="/" src="assets\images\adia-logo.jpg" alt="ADMP" /></div>
+    </div>
+  </header>
 
 
-<div class="main-container container">
+  <div class="main-container container">
 
-  <!-- <div class="alert alert-info col">
-      <strong>Normal User</strong> - U: user P: user<br />
-      <strong>Administrator</strong> - U: admin P: admin
-  </div> -->
+    <!-- <div class="alert alert-info col">
+        <strong>Normal User</strong> - U: user P: user<br />
+        <strong>Administrator</strong> - U: admin P: admin
+    </div> -->
 
-  <div class="login-panel text-center">
-    <h3 class="page-title">Login</h3> 
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="form-group row login-form-group">
-          <div *ngIf="error !== undefined" class="mat-login-form-field error-panel text-center">
-            <div class="alert alert-danger">{{error}}</div>
+    <div class="login-panel text-center">
+      <h3 class="page-title">Welcome to ADMP,<br/><small>The NextGen Integration Layer</small></h3> 
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-group row login-form-group">
+            <div *ngIf="error !== undefined" class="mat-login-form-field error-panel text-center">
+              <div class="alert alert-danger">{{error}}</div>
+            </div>
           </div>
-        </div>
-        <div class="form-group row login-form-group">
-            <mat-form-field class="mat-login-form-field">
-              <label class="control-label">UserId</label>
-              <input  class="form-control" matInput  maxlength="50" type="text" formControlName="username" />
-              <mat-error *ngIf="loginForm.get('username').hasError('required')">
-                UserId is <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="loginForm.get('username').hasError('invalid')">
-                Please enter a valid <strong>UserId</strong>
-              </mat-error>
-            </mat-form-field>
-        </div>
-        <div class="form-group row login-form-group">
-            <mat-form-field class="mat-login-form-field">
-              <label class="control-label">Password</label>
-              <input  class="form-control" matInput  maxlength="50" type="password" formControlName="password" />
-              <mat-error *ngIf="loginForm.get('password').hasError('required')">
-                Password is <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="loginForm.get('password').hasError('invalid')">
-                Please enter a valid <strong>Password</strong>
-              </mat-error>
-            </mat-form-field>
-        </div>
-        <div class="submit-block form-actions">
-          <button class="btn btn-primary" [disabled]="loginForm.invalid" type="submit">Login</button>
-        </div> 
-    </form>  
+          <div class="form-group row login-form-group">
+              <mat-form-field class="mat-login-form-field">
+                <label class="control-label">UserId</label>
+                <input  class="form-control" matInput  maxlength="50" type="text" formControlName="username" />
+                <mat-error *ngIf="loginForm.get('username').hasError('required')">
+                  UserId is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="loginForm.get('username').hasError('invalid')">
+                  Please enter a valid <strong>UserId</strong>
+                </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="form-group row login-form-group">
+              <mat-form-field class="mat-login-form-field">
+                <label class="control-label">Password</label>
+                <input  class="form-control" matInput  maxlength="50" type="password" formControlName="password" />
+                <mat-error *ngIf="loginForm.get('password').hasError('required')">
+                  Password is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="loginForm.get('password').hasError('invalid')">
+                  Please enter a valid <strong>Password</strong>
+                </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="submit-block form-actions">
+            <button class="btn btn-primary" [disabled]="loginForm.invalid" type="submit">Login</button>
+          </div> 
+      </form>  
+    </div>
   </div>
-</div>
+
+</div> <!-- .page-login -->

@@ -1,44 +1,56 @@
-<div class="toolbar" role="banner">
-  <div class="container-fluid">
-    <mat-toolbar color="primary" class="mat-toolbar title-panel">
-      <!-- <img width="40" routerLink="/" alt="Angular Logo" src="assets\images\logo2.jpg" /> -->
-      <span  routerLink="/">  <P style="text-align: centre;">Welcome to ADMP,  The NextGen Integration Layer</P> </span>
-    </mat-toolbar>
-    <div class="user-panel">
-        <mat-icon class="user-icon" aria-hidden="false">account_box</mat-icon>
-        <span style="font-weight: 500;">{{userInfo.username | titlecase }}</span>
-        <br/>
-        <span style="font-weight: 500;    margin-left: 8px;">ROLE: {{userInfo.roleName | titlecase }}</span>
-    </div>
-    <img width="250px" style = "float:right" routerLink="/" alt="Angular Logo" src="assets\images\admp-LOGO.png" />
+<header class="main-header">
+  <div class="header-wrapper d-flex justify-content-between align-items-center">
+    <div class="col-title"><h1 class="admp-title admp--welcome-title">Welcome to ADMP,<small>The NextGen Integration Layer</small></h1></div>
+    <div class="col-logo"><img routerLink="/" src="assets\images\adia-logo.jpg" alt="ADMP" /></div>
   </div>
-</div>
+</header>
 
+<div class="sidenav-container" *ngIf="isUserLoggedIn && isMenuHidden === undefined ">
+  <mat-sidenav #snavMenu opened="true">
+    <mat-nav-list>
+        <mat-list-item *ngxPermissionsOnly="['ANALYST']">
+          <a mat-list-item routerLink="/create">
+            <mat-icon class="small menu-icon" aria-hidden="false">add_to_photos</mat-icon>
+            <span>Create New Transactions</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item *ngxPermissionsOnly="['ANALYST']">
+          <a mat-list-item routerLink="/submit" >
+            <mat-icon class="small menu-icon" aria-hidden="false">save</mat-icon>
+            <span>Submit Transactions</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item *ngxPermissionsOnly="['ANALYST']">
+          <a mat-list-item routerLink="/viewalltransaction" >
+            <mat-icon class="small menu-icon" aria-hidden="false">view_list</mat-icon>
+            <span>View Transactions</span>
+          </a>
+        </mat-list-item>
 
-<div>
-  <mat-sidenav-container style = "margin-top: 20px;" class="sidenav-container" *ngIf="isUserLoggedIn && isMenuHidden === undefined ">
-    <mat-sidenav #snavMenu opened="true">
-      <mat-nav-list>
-          <mat-list-item *ngxPermissionsOnly="['ANALYST']">
-            <a mat-list-item routerLink="/create" >Create New Transactions</a>
-          </mat-list-item>
-         
-          <mat-list-item *ngxPermissionsOnly="['ANALYST']">
-            <a mat-list-item routerLink="/submit" >Submit Transactions</a>
-          </mat-list-item>
-          <mat-list-item *ngxPermissionsOnly="['ANALYST']">
-            <a mat-list-item routerLink="/viewalltransaction" >View Transactions</a>
-          </mat-list-item>
-          <mat-list-item *ngxPermissionsOnly="['REVIEWER']">
-            <a mat-list-item routerLink="/pending" >Review Transactions</a>
-          </mat-list-item>
-          <mat-list-item *ngxPermissionsOnly="['REVIEWER']">
-            <a mat-list-item routerLink="/view" >View Transactions</a>
-          </mat-list-item>
-          <mat-list-item>
-            <a mat-list-item (click)="logout()" >Logout</a>
-          </mat-list-item>
-      </mat-nav-list>
-    </mat-sidenav>
-  </mat-sidenav-container>
+        <mat-list-item *ngxPermissionsOnly="['REVIEWER']">
+          <a mat-list-item routerLink="/pending" >
+            <mat-icon class="small menu-icon" aria-hidden="false">verified_user</mat-icon>
+            <span>Review Transactions</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item *ngxPermissionsOnly="['REVIEWER']">
+          <a mat-list-item routerLink="/view" >
+            <mat-icon class="small menu-icon" aria-hidden="false">view_list</mat-icon>
+            <span>View Transactions</span>
+          </a>
+        </mat-list-item>
+
+        <mat-list-item>
+          <a mat-list-item (click)="logout()" >
+            <mat-icon class="small menu-icon" aria-hidden="false">power_settings_new</mat-icon>
+            <span>Logout</span>
+          </a>
+        </mat-list-item>
+    </mat-nav-list>
+    <div class="user-panel">
+        <span>User: {{userInfo.username | titlecase }}</span>
+        <br/>
+        <span>Role: {{userInfo.roleName | titlecase }}</span>
+    </div>
+  </mat-sidenav>
 </div>
