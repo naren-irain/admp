@@ -1,49 +1,37 @@
-<app-header [isUserLoggedIn]="isUserLoggedIn" [userRole]="userRole"></app-header>
-<br>
-<div class="container app-content-container">   
-  <div class="row page-title text-center">
-    <h3 class="page-title">Submit Transactions</h3>   
-  </div>
-  <br>
-  <form class="" [formGroup]="submitTransactionForm" (ngSubmit)="getAllData()">
-    <div class="form-group row" appearance="fill">
-        <div class="col-sm-12 text-center">
-            <mat-form-field appearance="fill">
-              <mat-label>TRANSACTION TYPE</mat-label>
-              <mat-select placeholder="Select an option" id="transactionType" formControlName="transactionType" (selectionChange)="getTransactionType($event)">
-                <mat-option value="">Select</mat-option>
-                <mat-option *ngFor="let transaction of transactions" [value]="transaction.transactionTypeName">
-                    {{transaction.transactionTypeName}}
-                </mat-option>
-              </mat-select>
-              <mat-hint align="start">
-                <sup>&#42;&nbsp;</sup>Please Select <strong>Transaction Type</strong>
-              </mat-hint>
-              <mat-error *ngIf="submitTransactionForm.get('transactionType').hasError('required')">
-                Transaction Type is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-            <button mat-button mat-raised-button color="primary" style="margin-left: 15px;" [disabled]="submitTransactionForm.invalid" matTooltip="Submit" type="submit" (click)="getAllData()">View</button>
-        </div>
-        <!-- <div class="col-sm-6 text-center">
-            <mat-form-field appearance="fill">
-              <mat-label>TRANSACTION CODE</mat-label>
-              <mat-select placeholder="Select an option" id="transCode" formControlName="transCode" (selectionChange)="getTransactionCode($event)">
-                <mat-option value="">Select</mat-option>
-                <mat-option *ngFor="let transactionCode of transactionCodes" [value]="transactionCode.transCode">
-                    {{transactionCode.transCode}}
-                </mat-option>
-              </mat-select>
-              <mat-hint align="start">
-                <sup>&#42;&nbsp;</sup>Please Select <strong>Transaction Code</strong>
-              </mat-hint>
-              <mat-error *ngIf="submitTransactionForm.get('transCode').hasError('required')">
-                Transaction Code is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-        </div> -->
+<div class="page page-list-transactions">
+
+  <app-header [isUserLoggedIn]="isUserLoggedIn" [userRole]="userRole"></app-header>
+
+  <div class="container app-content-container"> 
+  
+    <div class="inner-page-header">
+      <figure><img routerLink="/" src="assets\images\banner-submit-transaction.jpg" alt="" /></figure>
+      <div class="hgroup">
+        <h3 class="page-title">Submit Transactions</h3>
+      </div>
     </div>
-  </form>
+
+    <div class="filter-section">
+      <h3 class="page-title text-center">SELECT A TRANSACTION TYPE TO SUBMIT</h3>
+      <form class="" [formGroup]="submitTransactionForm" (ngSubmit)="getAllData()">
+        <div class="form-group text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>TRANSACTION TYPE</mat-label>
+            <mat-select placeholder="Select an option" id="transactionType" formControlName="transactionType" (selectionChange)="getTransactionType($event)">
+              <mat-option value="">Select</mat-option>
+              <mat-option *ngFor="let transaction of transactions" [value]="transaction.transactionTypeName">
+                  {{transaction.transactionTypeName}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="submitTransactionForm.get('transactionType').hasError('required')">
+              Transaction Type is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <button mat-button mat-raised-button color="primary" style="margin-left: 15px;" [disabled]="submitTransactionForm.invalid" matTooltip="Submit" type="submit" (click)="getAllData()">View</button>
+        </div>
+      </form>
+    </div>
+
   <div class="container">
     <ng-container>
         <ag-grid-angular #agGrid class="ag-theme-material view-transaction-grid"
@@ -54,13 +42,13 @@
         (selectionChanged)="onSelectionChanged($event)"
         >
       </ag-grid-angular>
-      <div class="row text-right">
-        <div class="col-lg-12" style="margin-bottom: 8px;">
-            <button class="btn" mat-button mat-raised-button color="primary" matTooltip="Submit" type="button"  (click)="submit()" style="margin-right: 8px;">Submit to Reviewer</button>
-            <button class="btn" mat-button mat-raised-button color="primary" matTooltip="Cancel" type="button" (click)="cancel()">Delete the entry</button>
-        </div>
+      <div class="submit-block text-right mt-4">
+          <button class="btn btn-primary" type="button"  (click)="submit()" style="margin-right: 8px;">Submit to Reviewer</button>
+          <button class="btn btn-danger" type="button" (click)="cancel()">Delete the entry</button>
       </div>
     </ng-container>
   </div>
+</div>
+
 </div>
 

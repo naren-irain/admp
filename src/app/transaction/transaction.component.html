@@ -1,31 +1,36 @@
-<app-header [isUserLoggedIn]="isUserLoggedIn" [userRole]="userRole"></app-header>
-<br>
-<div class="container app-content-container">   
-  <div class="row page-title text-center" style="text-align: center;">
-    <h3 class="page-title" style="text-align: center;">Create Transaction</h3> 
-    <h5 class="page-title" style="text-align: left; margin-top:30px ; margin-left:85px">Dear Initiator, Go Ahead and Choose the Transaction Type</h5>   
-  </div>
-  <br>
-  <form class="" [formGroup]="transactionForm">
-    <div class="form-group row" appearance="fill">
-      <div class="col-sm-4 text-center">
-        <mat-form-field appearance="fill">
-          <mat-label>TRANSACTION TYPE</mat-label>
-          <mat-select placeholder="Select an option" id="transactionType" formControlName="transactionType" (selectionChange)="getTransactionType($event)">
-            <mat-option value="">Select</mat-option>
-            <mat-option *ngFor="let transaction of transactions" [value]="transaction.transactionTypeName">
-                {{transaction.transactionTypeName}}
-            </mat-option>
-          </mat-select>
-          <mat-hint align="start">
-            <sup>&#42;&nbsp;</sup>Please Select <strong>Transaction</strong>
-          </mat-hint>
-          <mat-error *ngIf="transactionForm.get('transactionType').hasError('required')">
-            Transaction is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
+<div class="page page-list-transactions">
+
+  <app-header [isUserLoggedIn]="isUserLoggedIn" [userRole]="userRole"></app-header>
+
+  <div class="container app-content-container"> 
+  
+    <div class="inner-page-header">
+      <figure><img routerLink="/" src="assets\images\banner-transaction.jpg" alt="" /></figure>
+      <div class="hgroup">
+        <h3 class="page-title">Create Transaction</h3>
       </div>
-      <div class="col-sm-4 text-center">
+    </div>
+
+    <div class="transaction-detail-dection">
+      <form class="" [formGroup]="transactionForm">
+        <h3 class="page-title text-center">Dear Initiator, Go Ahead and Choose the Transaction Type</h3>
+        <div class="basic-setup-section d-flex justify-content-between">
+        <div class="form-group">
+          <mat-form-field appearance="fill">
+            <mat-label>TRANSACTION TYPE</mat-label>
+            <mat-select placeholder="Select an option" id="transactionType" formControlName="transactionType" (selectionChange)="getTransactionType($event)">
+              <mat-option value="">Select</mat-option>
+              <mat-option *ngFor="let transaction of transactions" [value]="transaction.transactionTypeName">
+                  {{transaction.transactionTypeName}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="transactionForm.get('transactionType').hasError('required')">
+              Transaction is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
           <mat-form-field appearance="fill">
             <mat-label>TRANSACTION CODE</mat-label>
             <mat-select placeholder="Select an option" id="transCode" formControlName="transCode">
@@ -34,82 +39,70 @@
                   {{transactionCode.transCode}}
               </mat-option>
             </mat-select>
-            <mat-hint align="start">
-              Please Select <strong>Transaction Code</strong>
-            </mat-hint>
             <mat-error *ngIf="transactionForm.get('transCode').hasError('required')">
               Transaction Code is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-      </div>
-      <div class="col-sm-4 text-center">
-        <mat-form-field appearance="fill">
-          <mat-label>DEPARTMENT</mat-label>
-          <mat-select placeholder="Select an option" id="department" formControlName="department" (selectionChange)="getDepartment($event)">
-            <mat-option value="">Select</mat-option>
-            <mat-option *ngFor="let department of departments" [value]="department.deptName">
-                {{department.deptName}}
-            </mat-option>
-          </mat-select>
-          <mat-hint align="start">
-            Please select <strong>Department</strong>
-          </mat-hint>
-          <mat-error *ngIf="transactionForm.get('department').hasError('required')">
-            Department is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="col-sm-4 text-center">
-        <mat-form-field appearance="fill">
-          <mat-label>SECTION</mat-label>
-          <mat-select placeholder="Select an option" id="section" formControlName="section">
-            <mat-option value="">Select</mat-option>
-            <mat-option *ngFor="let section of sections" [value]="section.sectionName">
-                {{section.sectionName}}
-            </mat-option>
-          </mat-select>
-          <mat-hint align="start">
-            Please select <strong>Section</strong>
-          </mat-hint>
-          <mat-error *ngIf="transactionForm.get('section').hasError('required')">
-            Section is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
+        </div>
 
-    <div class="form-group row">
-      
-      
-    </div>
-    <!--cash Transfer form-->
-    <ng-container *ngIf="selectedTransactionType === 'Cash Transfer'">
-      <div class="container">
-        <div class="row page-title text-center">
-            <h5 class="page-title">Cash Transfer</h5>   
-          </div> 
-        <br>
-        <form class="" formGroupName="cashTransferDetails">
-            <div class="form-group row"  appearance="fill">
-              <div class="col-sm-4 text-center">
+        <div class="form-group">
+          <mat-form-field appearance="fill">
+            <mat-label>DEPARTMENT</mat-label>
+            <mat-select placeholder="Select an option" id="department" formControlName="department" (selectionChange)="getDepartment($event)">
+              <mat-option value="">Select</mat-option>
+              <mat-option *ngFor="let department of departments" [value]="department.deptName">
+                  {{department.deptName}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="transactionForm.get('department').hasError('required')">
+              Department is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="fill">
+            <mat-label>SECTION</mat-label>
+            <mat-select placeholder="Select an option" id="section" formControlName="section">
+              <mat-option value="">Select</mat-option>
+              <mat-option *ngFor="let section of sections" [value]="section.sectionName">
+                  {{section.sectionName}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="transactionForm.get('section').hasError('required')">
+              Section is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div> <!-- .Basic setup screen -->
+        
+
+      <!--cash Transfer form-->
+      <ng-container *ngIf="selectedTransactionType === 'Cash Transfer'">
+        <div class="transaction-setup-section cash-transfer-section">
+
+          <h3 class="page-title">Cash Transfer</h3>
+
+          <form class="" formGroupName="cashTransferDetails">
+
+            <div class="form-group row">
+              <div class="col-sm-3">
+                <label class="control-label label-large">Account Details</label>
+              </div>
+              <div class="col-sm-7">
+                <div class="d-flex justify-content-between">
                   <mat-form-field appearance="fill">
                     <mat-label>Acc Id From</mat-label>
                     <mat-select placeholder="Select an option" formControlName="accountIdFrom">
                       <mat-option value="">Select</mat-option>
                       <mat-option *ngFor="let account of bankAccounts" [value]="account.accountId">
-
                           {{account.accountId}}
                       </mat-option>
                     </mat-select>
-                    <mat-hint align="start">
-                      <sup>&#42;&nbsp;</sup>Please enter <strong>Account Id From</strong>
-                    </mat-hint>
                     <mat-error *ngIf="transactionForm.get('cashTransferDetails.accountIdFrom').hasError('required')">
                       Account Id From is <strong>required</strong>
                     </mat-error>
                   </mat-form-field>
-              </div>
-              <div class="col-sm-4 text-center">
                   <mat-form-field appearance="fill">
                     <mat-label>Acc Id To</mat-label>
                     <mat-select placeholder="Select an option" formControlName="accountIdTo">
@@ -118,102 +111,75 @@
                           {{account.accountId}}
                       </mat-option>
                     </mat-select>
-                    <mat-hint align="start">
-                      <sup>&#42;&nbsp;</sup>Please enter <strong>Account Id To</strong>
-                    </mat-hint>
                     <mat-error *ngIf="transactionForm.get('cashTransferDetails.accountIdTo').hasError('required')">
                       Account Id To is <strong>required</strong>
                     </mat-error>
                   </mat-form-field>
+                </div>
               </div>
+            </div> <!-- .Account Group -->
 
-              <div class="col-sm-4 text-center">
-                <mat-form-field>
-                    <mat-label>Trade date</mat-label>
-                    <input matInput [matDatepicker]="tradeDate" formControlName="tradeDate" (dateChange)="dateFormat($event, 'cashTransferDetails','tradeDate')">
-                    <mat-datepicker-toggle matSuffix [for]="tradeDate"></mat-datepicker-toggle>
-                    <mat-datepicker #tradeDate></mat-datepicker>
-                    <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please select <strong>Trade date</strong>
-                      </mat-hint>
-                    <mat-error *ngIf="transactionForm.get('cashTransferDetails.tradeDate').hasError('required')">
-                      Trade date is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
 
-            <div class="col-sm-4 text-center">
-              <mat-form-field>
-                  <mat-label>Payment date</mat-label>
-                  <input matInput [matDatepicker]="paymentDate" formControlName="paymentDate" (dateChange)="dateFormat($event, 'cashTransferDetails', 'paymentDate')">
-                  <mat-datepicker-toggle matSuffix [for]="paymentDate"></mat-datepicker-toggle>
-                  <mat-datepicker #paymentDate></mat-datepicker>
-                  <mat-hint align="start">
-                    <sup>&#42;&nbsp;</sup>Please select <strong>Payment date</strong>
-                  </mat-hint>
-                  <mat-error *ngIf="transactionForm.get('cashTransferDetails.paymentDate').hasError('required')">
-                    Payment date is <strong>required</strong>
-                  </mat-error>
-              </mat-form-field>
-          </div>
-              
-            </div>
-            <div class="form-group row"  appearance="fill">
-              <!-- <div class="col-sm-6 text-center">
-                  <mat-form-field>
-                      <mat-label>Trade date</mat-label>
-                      <input matInput [matDatepicker]="tradeDate" formControlName="tradeDate" (dateChange)="dateFormat($event, 'cashTransferDetails','tradeDate')">
-                      <mat-datepicker-toggle matSuffix [for]="tradeDate"></mat-datepicker-toggle>
-                      <mat-datepicker #tradeDate></mat-datepicker>
-                      <mat-hint align="start">
-                          <sup>&#42;&nbsp;</sup>Please select <strong>Trade date</strong>
-                        </mat-hint>
-                      <mat-error *ngIf="transactionForm.get('cashTransferDetails.tradeDate').hasError('required')">
-                        Trade date is <strong>required</strong>
-                      </mat-error>
-                  </mat-form-field>
-              </div> -->
-              <!-- <div class="col-sm-6 text-center">
-                  <mat-form-field>
-                      <mat-label>Payment date</mat-label>
-                      <input matInput [matDatepicker]="paymentDate" formControlName="paymentDate" (dateChange)="dateFormat($event, 'cashTransferDetails', 'paymentDate')">
-                      <mat-datepicker-toggle matSuffix [for]="paymentDate"></mat-datepicker-toggle>
-                      <mat-datepicker #paymentDate></mat-datepicker>
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please select <strong>Payment date</strong>
-                      </mat-hint>
-                      <mat-error *ngIf="transactionForm.get('cashTransferDetails.paymentDate').hasError('required')">
-                        Payment date is <strong>required</strong>
-                      </mat-error>
-                  </mat-form-field>
-              </div> -->
-            </div>
-            <div class="form-group row"  appearance="fill">
-                <div class="col-sm-4 text-center">
-                    <mat-form-field appearance="fill">
+            <div class="form-group row">
+                <div class="col-sm-3">
+                  <label class="control-label label-large">Date Details</label>
+                </div>
+                <div class="col-sm-7">
+                  <div class="d-flex justify-content-between">
+                    <mat-form-field>
+                        <mat-label>Trade date</mat-label>
+                        <input matInput [matDatepicker]="tradeDate" formControlName="tradeDate" (dateChange)="dateFormat($event, 'cashTransferDetails','tradeDate')">
+                        <mat-datepicker-toggle matSuffix [for]="tradeDate"></mat-datepicker-toggle>
+                        <mat-datepicker #tradeDate></mat-datepicker>
+                        <mat-error *ngIf="transactionForm.get('cashTransferDetails.tradeDate').hasError('required')">
+                          Trade date is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Payment date</mat-label>
+                        <input matInput [matDatepicker]="paymentDate" formControlName="paymentDate" (dateChange)="dateFormat($event, 'cashTransferDetails', 'paymentDate')">
+                        <mat-datepicker-toggle matSuffix [for]="paymentDate"></mat-datepicker-toggle>
+                        <mat-datepicker #paymentDate></mat-datepicker>
+                        <mat-error *ngIf="transactionForm.get('cashTransferDetails.paymentDate').hasError('required')">
+                          Payment date is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                  </div>
+              </div>
+            </div> <!-- .Date Group -->
+
+
+            <div class="form-group row">
+                <div class="col-sm-3">
+                  <label class="control-label label-large">Amount Details</label>
+                </div>
+                <div class="col-sm-7">
+                  <div class="d-flex justify-content-between">
+                    <mat-form-field>
                       <mat-label>Amount</mat-label>
                       <input matInput type="number" formControlName="amount" />
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>Amount</strong>
-                      </mat-hint>
                       <mat-error *ngIf="transactionForm.get('cashTransferDetails.amount').hasError('required')">
-                       Amount is <strong>required</strong>
+                      Amount is <strong>required</strong>
                       </mat-error>
                     </mat-form-field>
-                </div>
-                <div class="col-sm-4 text-center">
                     <mat-form-field>
                       <mat-label>Exchange Rate</mat-label>
                       <input matInput type="number" formControlName="exchangeRate" />
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>Exchange rate</strong>
-                      </mat-hint>
                       <mat-error *ngIf="transactionForm.get('cashTransferDetails.exchangeRate').hasError('required')">
                         Exchange rate is <strong>required</strong>
                       </mat-error>
                     </mat-form-field>
+                  </div>
                 </div>
-                <div class="col-sm-4 text-center">
+            </div> <!-- .Amount Group -->
+
+
+            <div class="form-group row">
+              <div class="col-sm-3">
+                <label class="control-label label-large">Scenario Details</label>
+              </div>
+              <div class="col-sm-7">
+                <div class="d-flex justify-content-between">
                   <mat-form-field>
                     <mat-label>Original Scenario</mat-label>
                     <mat-select placeholder="Select an option" formControlName="originalScenario">
@@ -222,51 +188,21 @@
                           {{scenario.originalScenario}}
                       </mat-option>
                     </mat-select>
-                    <mat-hint align="start">
-                      <sup>&#42;&nbsp;</sup>Please enter <strong>Original Scenario</strong>
-                    </mat-hint>
                     <mat-error *ngIf="transactionForm.get('cashTransferDetails.originalScenario').hasError('required')">
                       Original scenario is <strong>required</strong>
                     </mat-error>
                   </mat-form-field>
-              </div>
-              <div class="col-sm-4 text-center">
-                  <mat-form-field>
-                    <mat-label>FK Sub-Portfolio From</mat-label>
-                    <mat-select placeholder="Select an option" formControlName="fkSubPortfolioFrom">
-                      <mat-option value="">Select</mat-option>
-                      <mat-option *ngFor="let portfolio of fkPortfolios" [value]="portfolio.portfolio">
-                          {{portfolio.portfolio}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-hint align="start">
-                      <sup>&#42;&nbsp;</sup>Please enter <strong>FK Sub-Portfolio From</strong>
-                    </mat-hint>
-                    <mat-error *ngIf="transactionForm.get('cashTransferDetails.fkSubPortfolioFrom').hasError('required')">
-                      FK Sub-Portfolio From is <strong>required</strong>
-                    </mat-error>
-                  </mat-form-field>
-              </div>
-            </div>
-            <div class="form-group row"   appearance="fill">
-                <!-- <div class="col-sm-4 text-center">
-                    <mat-form-field>
-                      <mat-label>Original Scenario</mat-label>
-                      <mat-select placeholder="Select an option" formControlName="originalScenario">
-                        <mat-option value="">Select</mat-option>
-                        <mat-option *ngFor="let scenario of originalScenarios" [value]="scenario.originalScenario">
-                            {{scenario.originalScenario}}
-                        </mat-option>
-                      </mat-select>
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>Original Scenario</strong>
-                      </mat-hint>
-                      <mat-error *ngIf="transactionForm.get('cashTransferDetails.originalScenario').hasError('required')">
-                        Original scenario is <strong>required</strong>
-                      </mat-error>
-                    </mat-form-field>
                 </div>
-                <div class="col-sm-4 text-center">
+              </div>
+            </div> <!-- .Scenario Group -->
+
+
+            <div class="form-group row">
+                <div class="col-sm-3">
+                  <label class="control-label label-large">Sub-Portfolio Details</label>
+                </div>
+                <div class="col-sm-7">
+                  <div class="d-flex justify-content-between">
                     <mat-form-field>
                       <mat-label>FK Sub-Portfolio From</mat-label>
                       <mat-select placeholder="Select an option" formControlName="fkSubPortfolioFrom">
@@ -275,17 +211,10 @@
                             {{portfolio.portfolio}}
                         </mat-option>
                       </mat-select>
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>FK Sub-Portfolio From</strong>
-                      </mat-hint>
                       <mat-error *ngIf="transactionForm.get('cashTransferDetails.fkSubPortfolioFrom').hasError('required')">
                         FK Sub-Portfolio From is <strong>required</strong>
                       </mat-error>
                     </mat-form-field>
-                </div> -->
-            </div>
-            <div class="form-group row"   appearance="fill">
-                <div class="col-sm-4 text-center">
                     <mat-form-field>
                       <mat-label>FK Sub-Portfolio To</mat-label>
                       <mat-select placeholder="Select an option" formControlName="fkSubPortfolioTo">
@@ -294,228 +223,159 @@
                             {{portfolio.portfolio}}
                         </mat-option>
                       </mat-select>
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>FK Sub-Portfolio To</strong>
-                      </mat-hint>
                       <mat-error *ngIf="transactionForm.get('cashTransferDetails.fkSubPortfolioTo').hasError('required')">
                         FK Sub-Portfolio To is <strong>required</strong>
                       </mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-sm-4 text-center">
-                    <mat-form-field>
-                      <mat-label>Cross Qc</mat-label>
-                      <input matInput type="text" formControlName="crossQc"/>
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>Cross Qc</strong>
-                      </mat-hint>
-                      <mat-error *ngIf="transactionForm.get('cashTransferDetails.crossQc').hasError('required')">
-                          Cross Qc is <strong>required</strong>
-                      </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-4 text-center">
+              </div>
+            </div> <!-- .Sub-Portfolio Group -->
+
+
+            <div class="form-group row">
+              <div class="col-sm-3">
+                <label class="control-label label-large">Additional Details</label>
+              </div>
+              <div class="col-sm-7">
+                <div class="d-flex justify-content-between">
+                  <mat-form-field>
+                    <mat-label>Cross Qc</mat-label>
+                    <input matInput type="text" formControlName="crossQc"/>
+                    <mat-error *ngIf="transactionForm.get('cashTransferDetails.crossQc').hasError('required')">
+                        Cross Qc is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
                   <mat-form-field>
                     <mat-label>Shift Generation</mat-label>
                     <input matInput type="text" formControlName="swiftGeneration"/>
-                    <mat-hint align="start">
-                      <sup>&#42;&nbsp;</sup>Please enter <strong>Shift Generation</strong>
-                    </mat-hint>
                     <mat-error *ngIf="transactionForm.get('cashTransferDetails.swiftGeneration').hasError('required')">
                         Shift Generation is <strong>required</strong>
                     </mat-error>
                   </mat-form-field>
+                </div>
               </div>
-              <div class="col-sm-4 text-center">
+            </div> <!-- .Cross QC group -->
+
+            <div class="form-group row">
+              <div class="col-sm-3">
+                <label class="control-label label-large">Add Comment</label>
+              </div>
+              <div class="col-sm-7 col-comment">
+                <div class="d-flex justify-content-between">
                   <mat-form-field>
                     <mat-label>Free Comment</mat-label>
                     <textarea matInput placeholder="Leave a comment"  formControlName="freeComment"></textarea>
-                    <mat-hint align="start">
-                      Please enter <strong>Free Comment</strong>
-                    </mat-hint>
                   </mat-form-field>
+                </div>
               </div>
-            </div>
-            <div class="form-group row"   appearance="fill">
-                <!-- <div class="col-sm-4 text-center">
-                    <mat-form-field>
-                      <mat-label>Shift Generation</mat-label>
-                      <input matInput type="text" formControlName="swiftGeneration"/>
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>Shift Generation</strong>
-                      </mat-hint>
-                      <mat-error *ngIf="transactionForm.get('cashTransferDetails.swiftGeneration').hasError('required')">
-                          Shift Generation is <strong>required</strong>
+            </div> <!-- .Cross QC group -->
+
+            <div class="form-actions text-right">
+              <button class="btn btn-primary" type="submit" (click)="createTransaction()">Create Transaction</button>
+            </div>          
+                
+          </form>
+        </div>
+      </ng-container>   
+
+      <!--Payment form-->
+      <ng-container *ngIf="selectedTransactionType === 'Payment'">
+        <div class="transaction-setup-section payment-section">
+
+          <h3 class="page-title">Payment</h3>
+  
+          <form class="" formGroupName="paymentDetails">
+
+            <div class="form-group row">
+              <div class="col-sm-3">
+                <label class="control-label label-large">Account Details</label>
+              </div>
+              <div class="col-sm-7">
+                <div class="d-flex justify-content-between">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Acc Id</mat-label>
+                      <mat-select placeholder="Select an option" formControlName="accountId">
+                        <mat-option value="">Select</mat-option>
+                        <mat-option *ngFor="let account of bankAccounts" [value]="account.accountId">
+                            {{account.accountId}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="transactionForm.get('paymentDetails.accountId').hasError('required')">
+                        Account Id is <strong>required</strong>
                       </mat-error>
                     </mat-form-field>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <mat-form-field>
-                      <mat-label>Free Comment</mat-label>
-                      <textarea matInput placeholder="Leave a comment"  formControlName="freeComment"></textarea>
-                      <mat-hint align="start">
-                        Please enter <strong>Free Comment</strong>
-                      </mat-hint>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Transaction Code</mat-label>
+                      <input matInput formControlName="transactionCode">
+                      <mat-error *ngIf="transactionForm.get('paymentDetails.transactionCode').hasError('required')">
+                          Transaction Code To is <strong>required</strong>
+                      </mat-error>
                     </mat-form-field>
-                </div> -->
-            </div>
-
-
-            
-
-             
-
-            
-
-            <!-- <div class="form-actions">
-              <div class="form-group row"   appearance="fill">
-              <div class="col-sm-6 text-center">
-                <button class="btn" mat-button mat-raised-button color="primary" matTooltip="Create" type="submit" (click)="createTransaction()">Create</button>
-              </div>
-              <div class="col-sm-6 text-center">
-
-                <button class="btn" mat-button mat-raised-button color="primary" (click)="transactionForm.reset()"> Reset </button>
-                
-              </div> 
-               </div>
-              </div>  -->
-
-
-              <div class="form-actions" style="margin-left: 400px;">
-               
-                <button class="btn" mat-button mat-raised-button color="primary" matTooltip="Create" type="submit" (click)="createTransaction()">Create Transaction</button>
-               
-               
-              </div>
-
-           
-              
-        </form>
-      </div>
-    </ng-container>    
-    <!--Payment form-->
-    <ng-container *ngIf="selectedTransactionType === 'Payment'">
-      <div class="container">
-        <div class="row page-title text-center">
-            <h5 class="page-title">Payment</h5>   
-          </div> 
-        <br>
-        <form class="" formGroupName="paymentDetails">
-            <div class="form-group row"  appearance="fill">
-              <div class="col-sm-4 text-center">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Acc Id</mat-label>
-                    <mat-select placeholder="Select an option" formControlName="accountId">
-                      <mat-option value="">Select</mat-option>
-                      <mat-option *ngFor="let account of bankAccounts" [value]="account.accountId">
-                          {{account.accountId}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-hint align="start">
-                      <sup>&#42;&nbsp;</sup>Please enter <strong>Account Id</strong>
-                    </mat-hint>
-                    <mat-error *ngIf="transactionForm.get('paymentDetails.accountId').hasError('required')">
-                      Account Id is <strong>required</strong>
-                    </mat-error>
-                  </mat-form-field>
-              </div>
-              <div class="col-sm-4 text-center">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Transaction Code</mat-label>
-                    <input matInput formControlName="transactionCode">
-                    <mat-hint align="start">
-                      <sup>&#42;&nbsp;</sup>Please enter <strong>Transaction Code</strong>
-                    </mat-hint>
-                    <mat-error *ngIf="transactionForm.get('paymentDetails.transactionCode').hasError('required')">
-                        Transaction Code To is <strong>required</strong>
-                    </mat-error>
-                  </mat-form-field>
-              </div>
-              <div class="col-sm-4 text-center">
-                <mat-form-field>
-                    <mat-label>Trade date</mat-label>
-                    <input matInput [matDatepicker]="tradeDate" formControlName="tradeDate" (dateChange)="dateFormat($event, 'paymentDetails', 'tradeDate')">
-                    <mat-datepicker-toggle matSuffix [for]="tradeDate"></mat-datepicker-toggle>
-                    <mat-datepicker #tradeDate></mat-datepicker>
-                    <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please select <strong>Trade date</strong>
-                      </mat-hint>
-                    <mat-error *ngIf="transactionForm.get('paymentDetails.tradeDate').hasError('required')">
-                      Trade date is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="col-sm-4 text-center">
-                <mat-form-field>
-                    <mat-label>Settlement date</mat-label>
-                    <input matInput [matDatepicker]="settlementDate" formControlName="settlementDate" (dateChange)="dateFormat($event, 'paymentDetails', 'settlementDate')">
-                    <mat-datepicker-toggle matSuffix [for]="settlementDate"></mat-datepicker-toggle>
-                    <mat-datepicker #settlementDate></mat-datepicker>
-                    <mat-hint align="start">
-                      <sup>&#42;&nbsp;</sup>Please select <strong>Settlement date</strong>
-                    </mat-hint>
-                    <mat-error *ngIf="transactionForm.get('paymentDetails.settlementDate').hasError('required')">
-                        Settlement date is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            </div>
-            <div class="form-group row"  appearance="fill">
-              <!-- <div class="col-sm-4 text-center">
+                  </div>
+                </div>
+              </div> <!-- .Account Group -->
+    
+    
+              <div class="form-group row">
+                <div class="col-sm-3">
+                  <label class="control-label label-large">Date Details</label>
+                </div>
+                <div class="col-sm-7">
+                  <div class="d-flex justify-content-between">
                   <mat-form-field>
                       <mat-label>Trade date</mat-label>
                       <input matInput [matDatepicker]="tradeDate" formControlName="tradeDate" (dateChange)="dateFormat($event, 'paymentDetails', 'tradeDate')">
                       <mat-datepicker-toggle matSuffix [for]="tradeDate"></mat-datepicker-toggle>
                       <mat-datepicker #tradeDate></mat-datepicker>
-                      <mat-hint align="start">
-                          <sup>&#42;&nbsp;</sup>Please select <strong>Trade date</strong>
-                        </mat-hint>
                       <mat-error *ngIf="transactionForm.get('paymentDetails.tradeDate').hasError('required')">
                         Trade date is <strong>required</strong>
                       </mat-error>
                   </mat-form-field>
-              </div>
-              <div class="col-sm-4 text-center">
                   <mat-form-field>
                       <mat-label>Settlement date</mat-label>
                       <input matInput [matDatepicker]="settlementDate" formControlName="settlementDate" (dateChange)="dateFormat($event, 'paymentDetails', 'settlementDate')">
                       <mat-datepicker-toggle matSuffix [for]="settlementDate"></mat-datepicker-toggle>
                       <mat-datepicker #settlementDate></mat-datepicker>
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please select <strong>Settlement date</strong>
-                      </mat-hint>
                       <mat-error *ngIf="transactionForm.get('paymentDetails.settlementDate').hasError('required')">
                           Settlement date is <strong>required</strong>
                       </mat-error>
                   </mat-form-field>
-              </div> -->
+                </div>
             </div>
-            <div class="form-group row"  appearance="fill">
-              <div class="col-sm-4 text-center">
-                  <mat-form-field appearance="fill">
+          </div> <!-- .Date Group -->
+
+
+          <div class="form-group row">
+              <div class="col-sm-3">
+                <label class="control-label label-large">Amount Details</label>
+              </div>
+              <div class="col-sm-7">
+                <div class="d-flex justify-content-between">
+                  <mat-form-field>
                     <mat-label>Amount PC</mat-label>
                     <input matInput type="number" formControlName="amountPc" />
-                    <mat-hint align="start">
-                      <sup>&#42;&nbsp;</sup>Please enter <strong>Amount PC</strong>
-                    </mat-hint>
                     <mat-error *ngIf="transactionForm.get('paymentDetails.amountPc').hasError('required')">
                       Amount PC is <strong>required</strong>
                     </mat-error>
                   </mat-form-field>
-              </div>
-              <div class="col-sm-4 text-center">
                   <mat-form-field>
                     <mat-label>Exchange Rate</mat-label>
                     <input matInput type="number" formControlName="exchangeRate" />
-                    <mat-hint align="start">
-                      <sup>&#42;&nbsp;</sup>Please enter <strong>Exchange rate</strong>
-                    </mat-hint>
                     <mat-error *ngIf="transactionForm.get('paymentDetails.exchangeRate').hasError('required')">
                       Exchange rate is <strong>required</strong>
                     </mat-error>
                   </mat-form-field>
+                </div>
               </div>
-              <div class="col-sm-4 text-center">
+          </div> <!-- .Amount Group -->
+
+
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label class="control-label label-large">Scenario Details</label>
+            </div>
+            <div class="col-sm-7">
+              <div class="d-flex justify-content-between">
                 <mat-form-field>
                   <mat-label>Original Scenario</mat-label>
                   <mat-select placeholder="Select an option" formControlName="originalScenario">
@@ -524,15 +384,10 @@
                         {{scenario.originalScenario}}
                     </mat-option>
                   </mat-select>
-                  <mat-hint align="start">
-                    <sup>&#42;&nbsp;</sup>Please enter <strong>Original Scenario</strong>
-                  </mat-hint>
                   <mat-error *ngIf="transactionForm.get('paymentDetails.originalScenario').hasError('required')">
                     Original scenario is <strong>required</strong>
                   </mat-error>
                 </mat-form-field>
-            </div>
-            <div class="col-sm-4 text-center">
                 <mat-form-field>
                   <mat-label>FK Sub-Portfolio</mat-label>
                   <mat-select placeholder="Select an option" formControlName="fkSubPortfolio">
@@ -541,100 +396,51 @@
                         {{portfolio.portfolio}}
                     </mat-option>
                   </mat-select>
-                  <mat-hint align="start">
-                    <sup>&#42;&nbsp;</sup>Please enter <strong>FK Sub-Portfolio</strong>
-                  </mat-hint>
                   <mat-error *ngIf="transactionForm.get('paymentDetails.fkSubPortfolio').hasError('required')">
                     FK Sub-Portfolio is <strong>required</strong>
                   </mat-error>
                 </mat-form-field>
-            </div>
-            </div>
-            <div class="form-group row"   appearance="fill">
-                <!-- <div class="col-sm-6 text-center">
-                    <mat-form-field>
-                      <mat-label>Original Scenario</mat-label>
-                      <mat-select placeholder="Select an option" formControlName="originalScenario">
-                        <mat-option value="">Select</mat-option>
-                        <mat-option *ngFor="let scenario of originalScenarios" [value]="scenario.originalScenario">
-                            {{scenario.originalScenario}}
-                        </mat-option>
-                      </mat-select>
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>Original Scenario</strong>
-                      </mat-hint>
-                      <mat-error *ngIf="transactionForm.get('paymentDetails.originalScenario').hasError('required')">
-                        Original scenario is <strong>required</strong>
-                      </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <mat-form-field>
-                      <mat-label>FK Sub-Portfolio</mat-label>
-                      <mat-select placeholder="Select an option" formControlName="fkSubPortfolio">
-                        <mat-option value="">Select</mat-option>
-                        <mat-option *ngFor="let portfolio of fkPortfolios" [value]="portfolio.portfolio">
-                            {{portfolio.portfolio}}
-                        </mat-option>
-                      </mat-select>
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>FK Sub-Portfolio</strong>
-                      </mat-hint>
-                      <mat-error *ngIf="transactionForm.get('paymentDetails.fkSubPortfolio').hasError('required')">
-                        FK Sub-Portfolio is <strong>required</strong>
-                      </mat-error>
-                    </mat-form-field>
-                </div> -->
-            </div>
-            <div class="form-group row"   appearance="fill">
-                <div class="col-sm-4 text-center">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Settlement Amount</mat-label>
-                      <input matInput type="number" formControlName="settlementAmount" />
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>Settlement Amount</strong>
-                      </mat-hint>
-                      <mat-error *ngIf="transactionForm.get('paymentDetails.settlementAmount').hasError('required')">
-                        Settlement Amount is <strong>required</strong>
-                      </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <mat-form-field>
-                      
-                      <mat-label>Cross Qc</mat-label>
-                      <input matInput type="text" formControlName="crossQc"/>
-                      <mat-hint align="start">
-                        <sup>&#42;&nbsp;</sup>Please enter <strong>Cross Qc</strong>
-                      </mat-hint>
-                      <mat-error *ngIf="transactionForm.get('paymentDetails.crossQc').hasError('required')">
-                          Cross Qc is <strong>required</strong>
-                      </mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="form-actions" style="margin-left: 400px;">
-                <button class="btn" mat-button mat-raised-button color="primary" matTooltip="Create" type="submit" (click)="createTransaction()">Create Transaction</button>
-            </div> 
-
-            <!-- <div class="form-actions">
-              <div class="form-group row"   appearance="fill">
-              <div class="col-sm-6 text-center">
-                <button class="btn" mat-button mat-raised-button color="primary" matTooltip="Create" type="submit" (click)="createTransaction()">Create</button>
               </div>
-              <div class="col-sm-6 text-center">
-
-                <button class="btn" mat-button mat-raised-button color="primary" (click)="transactionForm.reset()"> Reset </button>
-                
-              </div> 
-               </div>
-              </div>  -->
+            </div>
+          </div> <!-- .Scenario Group -->
 
 
-        </form>
-      </div>
-    </ng-container>    
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label class="control-label label-large">Settlement Details</label>
+            </div>
+            <div class="col-sm-7">
+              <div class="d-flex justify-content-between">
+                <mat-form-field>
+                  <mat-label>Settlement Amount</mat-label>
+                  <input matInput type="number" formControlName="settlementAmount" />
+                  <mat-error *ngIf="transactionForm.get('paymentDetails.settlementAmount').hasError('required')">
+                    Settlement Amount is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Cross Qc</mat-label>
+                  <input matInput type="text" formControlName="crossQc"/>
+                  <mat-error *ngIf="transactionForm.get('paymentDetails.crossQc').hasError('required')">
+                      Cross Qc is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div> <!-- .Settlement Group -->
 
-  </form>
+          <div class="form-actions text-right">
+              <button class="btn btn-primary" type="submit" (click)="createTransaction()">Create Transaction</button>
+          </div> 
+
+
+            </form>
+          </div>
+        </ng-container>    
+
+      </form>
+    </div>
+
+  </div>
+
 </div>
-

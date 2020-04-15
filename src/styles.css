@@ -355,9 +355,23 @@ label.control-label {
 div.mat-form-field-wrapper {
   padding-bottom: 2rem;
 }
-button.btn.btn-primary {
+button.btn.btn-primary,
+button.mat-button.mat-raised-button.mat-primary {
   background: #04b79e;
   border-color: #04b79e;
+  border-radius: 2px;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 14px 30px;
+  min-width: 150px;
+  text-align: center;
+}
+button.btn.btn-danger {
+  background: #dc3545;
+  border-color: #dc3545;
   border-radius: 2px;
   line-height: 1;
   text-transform: uppercase;
@@ -404,11 +418,13 @@ div.ag-header-cell {
 
 .inner-page-header {
   position: relative;
-  margin: 10px auto;
+  margin: 30px auto 15px;
   max-width: 1082px;
   padding: 0 15px;
 }
 .inner-page-header .hgroup {
+  color: #fff;
+  text-align: right;
   position: absolute;
   right: 45px;
   top: 50%;
@@ -428,4 +444,96 @@ div.ag-header-cell {
 .app-content-container .container {
   max-width: 1082px;
   margin: 0 auto;
+}
+.inner-page-header p {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/*** Transaction page ***/
+.transaction-detail-dection {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 30px 50px;
+  max-width: 1050px;
+  margin: 15px auto 40px;
+}
+.basic-setup-section {
+  margin: 30px 0;
+}
+.mat-form-field-appearance-fill div.mat-form-field-flex {
+  padding: 1em 0 0;
+}
+.mat-form-field-appearance-fill div.mat-form-field-subscript-wrapper {
+  padding: 0;
+}
+.mat-form-field-appearance-fill div.mat-form-field-infix {
+  padding: 1em 0;
+}
+div.mat-form-field-underline {bottom: 2rem;}
+span.mat-form-field-label-wrapper {
+  top: -1em;
+}
+.mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+  transform: none !important;
+}
+.transaction-setup-section {
+  background: #fbfbfb;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  margin: 0 -50px -30px;
+  padding: 30px 50px;
+}
+.transaction-setup-section .form-group.row {
+  margin: 0 0 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+}
+.transaction-setup-section h3.page-title {
+  color: #000;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.transaction-setup-section label.label-large {
+  color: #000;
+  padding-top: 8px;
+}
+.transaction-setup-section .form-group .col-sm-3 {
+  padding-left: 0;
+}
+.transaction-setup-section .form-group .col-sm-7 {
+  padding-right: 0;
+}
+.transaction-setup-section .mat-form-field {
+  min-width: 200px;
+}
+.transaction-setup-section .col-comment .mat-form-field {
+  display: block;
+  width: 100%;
+}
+textarea.mat-input-element {
+  height: 5em;
+}
+
+.filter-section {
+  max-width: 1050px;
+  background: #fff;
+  padding: 30px 50px 20px;
+  border: 1px solid rgba(0,0,0,0.1);
+  margin: 0 auto 20px;
+}
+.filter-section h3.page-title {
+  margin-bottom: 20px;
+}
+
+
+.view-transaction-grid {
+  width: 100%; 
+  height: auto;
+  border: 1px solid #e2e2e2;
+}
+.ag-theme-material div.ag-paging-panel {
+  border: 0;
+}
+.page {
+  padding-bottom: 40px;
 }
